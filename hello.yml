@@ -1,6 +1,8 @@
-- name: Hello
-  hosts: "{{ target_hosts | default('localhost') }}"
-
-  tasks:
-     - name: Print Hello
+---
+  - name: Echo
+    hosts: localhost
+    become: yes
+    become_user: root
+    tasks:
+      - name: Print Hello
         shell: 'echo "Hello this job is succsessful"'
