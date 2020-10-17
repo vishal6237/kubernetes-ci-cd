@@ -1,8 +1,8 @@
 ---
-  - name: Echo
+  - name: hello
     hosts: localhost
     become: yes
     become_user: root
     tasks:
       - name: Print Hello
-        shell: 'echo "Hello this job is succsessful"'
+        shell: 'hostname && echo "Hello this job is succsessful"'
