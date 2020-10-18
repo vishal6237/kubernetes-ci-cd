@@ -4,16 +4,15 @@
     become: yes
     become_user: root
     tasks:
-      - name: Print Hello
-        shell: 'hostname && echo "Hello this job is succsessful"'
-      - name: json_exporter container
-        docker:
-          name: json_exporter
-          image: quay.io/prometheuscommunity/json-exporter
-          command: http://admin:password@192.168.56.4/api/v2/jobs/ /config.yml
-          state: reloaded
-          pull: always
-          volumes:
-          - /opt/Json_exporter_ansible/config.yml:/config.yml
-          ports:
-          - "7979:7979"
+    - name: Print Hello
+      shell: 'hostname && echo "Hello this job is succsessful"'
+    - name: json_exporter container
+      community.general.docker_container:
+        name: json_exporter
+        state: present
+        image: quay.io/prometheuscommunity/json-exporter
+        command: http://admin:password@192.168.56.4/api/v2/jobs/ /config.yml
+        volumes:
+        - /opt/Json_exporter_ansible/config.yml:/config.yml
+        ports:
+        - "7979:7979"
