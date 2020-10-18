@@ -7,7 +7,7 @@
     - name: Print Hello
       shell: 'hostname && echo "Hello this job is succsessful"'
     - name: json_exporter container
-      community.general.docker_container:
+      docker_container:
         name: json_exporter
         state: present
         image: quay.io/prometheuscommunity/json-exporter
